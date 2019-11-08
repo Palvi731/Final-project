@@ -101,12 +101,7 @@ class ViewController: UIViewController {
         
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        printnum()
-
-    }
+    
 
     //sets number
     func printnum(){
@@ -169,6 +164,7 @@ class ViewController: UIViewController {
    
     
     
+    
   var theNumber : String = "0"
     
     
@@ -191,35 +187,45 @@ class ViewController: UIViewController {
     
     else if Sender.tag == 10  && label.text?.last != "+" && label.text?.last != "-" && label.text?.last != "*" && label.text?.last != "/"  {
         
-        label.text="0"
-        label.text = "\(Sender.tag)"
+        label.text = ""
+        
+        label.text = "+"
          theNumber += "+"
-           
-                printnum()
+           // label.text = ""
+              //  printnum()
     }
     
     
     else if Sender.tag == 11 && label.text?.last != "+" && label.text?.last != "-" && label.text?.last != "*" && label.text?.last != "/"  {
-         
+        
+        label.text = ""
+        
+        label.text = "-"
           theNumber += "-"
             
-                 printnum()
+                // printnum()
      }
     
     
     else if Sender.tag == 12 && label.text?.last != "+" && label.text?.last != "-" && label.text?.last != "*" && label.text?.last != "/"  {
-         
+        
+        label.text = ""
+        
+        label.text = "*"
           theNumber += "*"
             
-                 printnum()
+                 //printnum()
      }
     
     
     else if Sender.tag == 13 && label.text?.last != "+" && label.text?.last != "-" && label.text?.last != "*" && label.text?.last != "/" {
-         
+        
+        label.text = ""
+        
+          label.text = "/"
           theNumber += "/"
             
-                 printnum()
+                 //printnum()
      }
     
 
@@ -231,18 +237,25 @@ class ViewController: UIViewController {
     @IBAction func Result(_ sender: Any) {
     
    
-    
+        if theNumber.last == "+" || theNumber.last  == "-" || theNumber.last == "*"  || theNumber.last  == "/" {
+            return
         
+        }
+        print(theNumber)
         let stringWithMathematicalOperation: String = theNumber // Example
         let exp: NSExpression = NSExpression(format: stringWithMathematicalOperation)
         let result: Double = exp.expressionValue(with: nil, context: nil) as! Double // 25.0
         theNumber = String(result)
+        
         printnum()
+        
+        theNumber = ""
         
     
     }
     
     
+    @IBOutlet var roundedbutton: [UIButton]!
     
     
     
@@ -262,6 +275,15 @@ class ViewController: UIViewController {
         
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        for i in 0..<roundedbutton.count{
+            roundedbutton[i].layer.cornerRadius = 15.0
+        }
+        
+    }
 }
 
 
