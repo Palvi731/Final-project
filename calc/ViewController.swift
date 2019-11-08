@@ -227,7 +227,6 @@ class ViewController: UIViewController {
             
                  //printnum()
      }
-    
 
     
     }
@@ -246,18 +245,19 @@ class ViewController: UIViewController {
         
         }
         
-        if !theNumber.contains("+")  {
+        if !theNumber.contains("-") &&  !theNumber.contains("+") && !theNumber.contains("*")  && !theNumber.contains("/") {
             
             return
             
         }
- 
+        
+        
         
         print(theNumber)
         let stringWithMathematicalOperation: String = theNumber
         let exp: NSExpression = NSExpression(format: stringWithMathematicalOperation)
         
-        let result: Double = try! exp.expressionValue(with: nil, context: nil) as! Double
+        let result: Double = exp.expressionValue(with: nil, context: nil) as! Double
         
         
         theNumber = String(result)
@@ -297,6 +297,56 @@ class ViewController: UIViewController {
         }
         
     }
+
+
+
+    
+    @IBAction func dot(_ sender: Any) {
+        
+        
+        if theNumber.last == "." || theNumber.last == "+" || theNumber.last == "-" || theNumber.last == "*" {
+            
+            return
+        
+        }
+            
+        else{
+            
+        theNumber += "."
+        
+        printnum()
+        
+        }
+        
+        
+    }
+    
+    
+    
+    @IBAction func percent(_ sender: Any) {
+   if theNumber.last == "." || theNumber.last == "+" || theNumber.last == "-" || theNumber.last == "*" {
+                       
+    return
+}
+        
+        if theNumber.contains("-") &&  theNumber.contains("+") && theNumber.contains("*")  && theNumber.contains("/") {
+            
+            return
+            
+        }
+        
+        var number = label.text
+          
+        let number2 = Double(number!) ?? 0
+          
+              var pecent = number2 / 100
+              
+              label.text = String(pecent)
+        
+    }
+    
+
+
 }
 
 
