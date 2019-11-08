@@ -236,19 +236,32 @@ class ViewController: UIViewController {
     
     @IBAction func Result(_ sender: Any) {
     
-   
+        if theNumber.contains("=== 1"){
+            return
+        }
+        
+        
         if theNumber.last == "+" || theNumber.last  == "-" || theNumber.last == "*"  || theNumber.last  == "/" {
             return
         
         }
+        
+        if !theNumber.contains("+")  {
+            
+            return
+            
+        }
+ 
+        
         print(theNumber)
-        let stringWithMathematicalOperation: String = theNumber // Example
+        let stringWithMathematicalOperation: String = theNumber
         let exp: NSExpression = NSExpression(format: stringWithMathematicalOperation)
-        let result: Double = exp.expressionValue(with: nil, context: nil) as! Double // 25.0
+        
+        let result: Double = try! exp.expressionValue(with: nil, context: nil) as! Double
+        
+        
         theNumber = String(result)
-        
         printnum()
-        
         theNumber = ""
         
     
